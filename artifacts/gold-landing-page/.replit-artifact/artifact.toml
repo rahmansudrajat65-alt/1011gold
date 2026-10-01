@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "1011 Gold Landing Page"
+description = "Landing page for 1011 Gold, recreated from the user's original website with responsive layout and matching brand presentation."
+version = "1.0.0"
+id = "artifacts/gold-landing-page"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19131
+
+[services.development]
+run = "pnpm --filter @workspace/gold-landing-page run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gold-landing-page", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/gold-landing-page/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19131"
+BASE_PATH = "/"

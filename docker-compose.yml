@@ -1,0 +1,10 @@
+services:
+  gold-landing-page:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:4173:4173"
+    environment:
+      PORT: "4173"
+      BASE_PATH: "/"
